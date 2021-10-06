@@ -314,7 +314,7 @@ public class Server extends Thread {
       }
 
       sendToAll("## Saiu do chat!", false);
-      players.remove(saida);
+      players.remove(player);
       conexao.close();
 
     } catch (IOException e) {
@@ -339,6 +339,7 @@ public class Server extends Thread {
         System.out.println("Esperando jogador " + i + " se conectar....");
         Socket conexao = s.accept();
         Player player = new Player();
+
         player.setId(i-1);
         player.setIp(conexao.getRemoteSocketAddress().toString());
         player.setSocket(conexao);
@@ -353,7 +354,6 @@ public class Server extends Thread {
         i++;
       }
 
-      //!!!!!!!! botei isso pq tava dando erro mas talvez quebre
       s.close();
 
     } catch (Exception e) {
